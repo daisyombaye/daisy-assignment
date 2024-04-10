@@ -1,0 +1,14 @@
+DROP DATABASE IF EXISTS `ambulance_booking`;
+
+CREATE DATABASE IF NOT EXISTS `ambulance_booking`;
+
+CREATE TABLE IF NOT EXISTS `ambulance_booking`.`users` (`User_ID` INT NOT NULL AUTO_INCREMENT , `Fullname` TEXT NOT NULL , `Phone_Number` TEXT NOT NULL , `Email_Address` TEXT NOT NULL , `Password` TEXT NOT NULL , `User_Type` TEXT NOT NULL , `Address` TEXT NULL , PRIMARY KEY (`User_ID`), UNIQUE (`Email_Address`)) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `ambulance_booking`.`ambulance` (`Ambulance_ID` INT NOT NULL AUTO_INCREMENT , `User_ID` INT NOT NULL , `Price` DOUBLE NOT NULL , `Reg_No` TEXT NOT NULL , `Image` TEXT NULL, PRIMARY KEY (`Ambulance_ID`)) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `ambulance_booking`.`bookings` (`Booking_ID` INT NOT NULL AUTO_INCREMENT , `User_ID` TEXT NOT NULL, `Driver_ID` TEXT NULL, `Hospital_ID` TEXT NULL, `Ambulance_ID` TEXT NOT NULL , `Details` TEXT NOT NULL , `Date_Time` TEXT NOT NULL , `Created_At` DATE NOT NULL DEFAULT DATE(NOW()), `Status` TEXT NOT NULL DEFAULT 'Pending', PRIMARY KEY (`Booking_ID`)) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `ambulance_booking`.`testimonials` (`Testimonial_ID` INT NOT NULL AUTO_INCREMENT , `User_ID` INT NOT NULL , `Description` TEXT NOT NULL , `Response` TEXT NOT NULL , PRIMARY KEY (`Testimonial_ID`)) ENGINE = InnoDB;
+
+INSERT INTO `ambulance_booking`.`users`(`Fullname`, `Phone_Number`, `Email_Address`, `Password`, `User_Type`) VALUES ('Administrator','+254712345678','admin@gmail.com',md5('145418'),'Administrator'); 
+ 
